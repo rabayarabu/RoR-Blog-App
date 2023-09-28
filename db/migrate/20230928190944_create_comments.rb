@@ -4,10 +4,9 @@ class CreateComments < ActiveRecord::Migration[7.0]
       t.references :user, null: false, foreign_key: true
       t.references :post, null: false, foreign_key: true
       t.text :text
-      t.datetime :created_at
-      t.datetime :updated_at
 
       t.timestamps
     end
+    add_index :comments, [:user_id, :post_id]
   end
 end
