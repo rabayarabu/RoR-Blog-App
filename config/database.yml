@@ -1,0 +1,29 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: blogs
+  pool: 5
+  username: postgres
+  password: 12345678
+  host: localhost # or specify the hostname where your PostgreSQL server is running
+  port: 5432 # default PostgreSQL port
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: blogs
+  pool: 5
+  username: postgres
+  password: 12345678
+  host: localhost
+  port: 5432
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: blogs
+  pool: 5
+  username: postgres
+  password: 12345678
+  host: localhost
+  port: 5432
