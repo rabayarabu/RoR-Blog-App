@@ -1,6 +1,6 @@
 class Comment < ApplicationRecord
   belongs_to :author, class_name: 'User'
-  belongs_to :post, class_name: 'Post'
+  belongs_to :post
   # Method to update the comments counter for a post
   after_create :increment_post_comments_counter
   after_destroy :decrement_post_comments_counter

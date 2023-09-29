@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :author, class_name: 'User'
-  has_many :comments, foreign_key: 'post_id'
-  has_many :likes, foreign_key: 'post_id'
+  has_many :comments
+  has_many :likes
   # Method to update the posts counter for a user
   after_create :increment_user_posts_counter
   after_destroy :decrement_user_posts_counter

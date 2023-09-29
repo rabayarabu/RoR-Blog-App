@@ -1,6 +1,6 @@
 class Like < ApplicationRecord
-  belongs_to :post, class_name: 'Post'
-  belongs_to :user, class_name: 'User'
+  belongs_to :author, class_name: 'User'
+  belongs_to :post
   # Method to update the likes counter for a post
   after_create :increment_post_likes_counter
   after_destroy :decrement_post_likes_counter
