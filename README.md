@@ -170,8 +170,9 @@ it will run the all the unit test of these project
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] Validations
-- [ ] Processing data
+- [ ] Add Devise.
+- [ ] Add authorization rules.
+- [ ] Add API endpoints.
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
