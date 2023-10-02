@@ -10,11 +10,11 @@ class Post < ApplicationRecord
   after_destroy :decrement_user_posts_counter
 
   def increment_user_posts_counter
-    author.increment!(:posts_count)
+    author.increment!(:posts_counter)
   end
 
   def decrement_user_posts_counter
-    author.decrement!(:posts_count)
+    author.decrement!(:posts_counter)
   end
 
   # Method to return the 5 most recent comments for a given post
