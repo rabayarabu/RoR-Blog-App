@@ -8,15 +8,13 @@
 
 <div class="user_post">
    <% @user.recent_posts.each do |post| %>
+
       <%= render 'shared/post', post:post %>
    <%end%>
 
 </div>
 <div class="button_holder">
 <button>
- <%= link_to 'See all posts', "#{@user.id}/posts" %>
-</button>
-<button>
- <%= link_to 'Back', :back %>
+<%= link_to 'Create new post', new_user_post_path(@user)%>
 </button>
 </div>
