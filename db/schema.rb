@@ -41,7 +41,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_30_023842) do
     t.integer "likes_counter", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "likes_count"
     t.index ["author_id", "created_at"], name: "index_posts_on_author_id_and_created_at"
     t.index ["author_id"], name: "index_posts_on_author_id"
   end

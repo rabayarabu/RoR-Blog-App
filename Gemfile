@@ -49,14 +49,23 @@ gem 'bootsnap', require: false
 # gem "image_processing", "~> 1.2"
 
 group :development, :test do
+   # The RSpec testing framework
+   gem 'rspec-rails'
+
+   # Capybara, the library that allows us to interact with the browser using Ruby
+   
+ 
+   # The following gems aids with the nuts and bolts
+   # of interacting with the browser.
+   
+  gem 'rails-controller-testing'
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
-  gem 'rails-controller-testing'
-  gem 'rspec-rails'
+  
   gem 'web-console'
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
@@ -67,6 +76,6 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem 'capybara'
   gem 'selenium-webdriver'
+  gem 'capybara'
 end
