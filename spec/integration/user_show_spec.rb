@@ -11,7 +11,8 @@ describe 'User Show Page Features', type: :feature, js: true do
 
     Post.create(id: 4111, title: 'Post 1', text: 'text 1', likes_counter: 0, comments_counter: 0, author_id: @user1.id)
     Post.create(id: 51111, title: 'Post 2', text: 'text 2', likes_counter: 0, comments_counter: 0, author_id: @user1.id)
-    Post.create(id: 611111, title: 'Post 3', text: 'text 3', likes_counter: 0, comments_counter: 0, author_id: @user1.id)
+    Post.create(id: 611111, title: 'Post 3', text: 'text 3', likes_counter: 0, comments_counter: 0,
+                author_id: @user1.id)
   end
 
   it 'can see the username' do
