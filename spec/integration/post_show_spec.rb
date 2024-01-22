@@ -9,12 +9,14 @@ RSpec.describe 'Post Show Page Features', type: :feature, js: true do
       posts_counter: 5
     )
 
-    @post1 = Post.create(id: 46666, title: 'Post 1', text: 'text 1', likes_counter: 0, comments_counter: 0,
+    @post1 = Post.create(id: 46_666, title: 'Post 1', text: 'text 1', likes_counter: 0, comments_counter: 0,
                          author_id: @user1.id)
-    @post2 = Post.create(id: 566666, title: 'Post 2', text: 'text 2', likes_counter: 0, comments_counter: 0,
+    @post2 = Post.create(id: 566_666, title: 'Post 2', text: 'text 2', likes_counter: 0, comments_counter: 0,
                          author_id: @user1.id)
-    Post.create(id: 63333, title: 'Post 3', text: 'text 3', likes_counter: 0, comments_counter: 0, author_id: @user1.id)
-    Post.create(id: 73333, title: 'Post 4', text: 'text 4', likes_counter: 0, comments_counter: 0, author_id: @user1.id)
+    Post.create(id: 63_333, title: 'Post 3', text: 'text 3', likes_counter: 0, comments_counter: 0,
+                author_id: @user1.id)
+    Post.create(id: 73_333, title: 'Post 4', text: 'text 4', likes_counter: 0, comments_counter: 0,
+                author_id: @user1.id)
 
     @user1.comments.create(text: 'comment 1', post: @post1)
     @user1.comments.create(text: 'comment 2', post: @post1)

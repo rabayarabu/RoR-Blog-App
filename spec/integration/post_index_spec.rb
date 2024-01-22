@@ -9,9 +9,9 @@ describe 'Post Index Page Features', type: :feature, js: true do
       posts_counter: 5
     )
 
-    post1 = Post.create(id: 44444, title: 'Post 1', text: 'text 1', likes_counter: 0, comments_counter: 0,
+    post1 = Post.create(id: 44_444, title: 'Post 1', text: 'text 1', likes_counter: 0, comments_counter: 0,
                         author_id: @user1.id)
-    post2 = Post.create(id: 5555555, title: 'Post 2', text: 'text 2', likes_counter: 0, comments_counter: 0,
+    post2 = Post.create(id: 5_555_555, title: 'Post 2', text: 'text 2', likes_counter: 0, comments_counter: 0,
                         author_id: @user1.id)
     Post.create(id: 6666, title: 'Post 3', text: 'text 3', likes_counter: 0, comments_counter: 0, author_id: @user1.id)
     Post.create(id: 7777, title: 'Post 4', text: 'text 4', likes_counter: 0, comments_counter: 0, author_id: @user1.id)
