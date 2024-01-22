@@ -7,6 +7,9 @@ node_modules/
 # Ignore bundler config.
 /.bundle
 
+# .gitignore
+node_modules/
+
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-*
