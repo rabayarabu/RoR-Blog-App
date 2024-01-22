@@ -1,29 +1,65 @@
 require 'rails_helper'
 
-RSpec.describe "Post Show Page", type: :feature do
-  let(:user) { create(:user) } 
-  let(:post) { create(:post, author: user) } 
+RSpec.describe 'Post Show Page Features', type: :feature, js: true do
+  before :each do
+    @user1 = User.create(
+      name: 'Harley Quinn',
+      photo: 'https://images.unsplash.com/photo-1696537768609-1cf03f53e893?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80',
+      bio: 'user1 Pix',
+      posts_counter: 5
+    )
 
-  before do
-    visit post_path(post) 
+    @post1 = Post.create(id: 46666, title: 'Post 1', text: 'text 1', likes_counter: 0, comments_counter: 0,
+                         author_id: @user1.id)
+    @post2 = Post.create(id: 566666, title: 'Post 2', text: 'text 2', likes_counter: 0, comments_counter: 0,
+                         author_id: @user1.id)
+    Post.create(id: 63333, title: 'Post 3', text: 'text 3', likes_counter: 0, comments_counter: 0, author_id: @user1.id)
+    Post.create(id: 73333, title: 'Post 4', text: 'text 4', likes_counter: 0, comments_counter: 0, author_id: @user1.id)
+
+    @user1.comments.create(text: 'comment 1', post: @post1)
+    @user1.comments.create(text: 'comment 2', post: @post1)
+    @user1.comments.create(text: 'comment 3', post: @post2)
+
+    @user1.likes.create(post: @post1)
   end
 
-  it "displays the 'Add New Post' form" do
-    expect(page).to have_selector("h3", text: "Add New Post")
-
-    within('form') do
-      expect(page).to have_field('post[title]')
-      expect(page).to have_field('post[text]')
-      expect(page).to have_button('Create Post')
-    end
+  it 'can see the post\'s title' do
+    visit user_post_path(@user1.id, @post1.id)
+    expect(page).to have_content('text 1')
   end
 
-  it "allows creating a new post" do
-    fill_in "post[title]", with: "New Post Title"
-    fill_in "post[text]", with: "This is a new post."
-    click_button "Create Post"
-    
-    expect(page).to have_content("New Post Title")
-    expect(page).to have_content("This is a new post.")
+  it 'can see the who wrote the post' do
+    visit user_post_path(@user1.id, @post1.id)
+    expect(page).to have_content('Harley Quinn')
+  end
+
+  it 'can see how many comments a post has' do
+    visit user_post_path(@user1.id, @post1.id)
+    expect(page).to have_content('Comments: 2')
+    visit user_post_path(@user1.id, @post2.id)
+    expect(page).to have_content('Comments: 1')
+  end
+
+  it 'can see how many likes a post has' do
+    visit user_post_path(@user1.id, @post1.id)
+    expect(page).to have_content('Likes: 1')
+  end
+
+  it 'can see the post\'s body' do
+    visit user_post_path(@user1.id, @post1.id)
+    expect(page).to have_content('text 1')
+  end
+
+  it 'can see the user name of the commentor' do
+    visit user_post_path(@user1.id, @post1.id)
+    expect(page).to have_content('Harley Quinn')
+  end
+
+  it 'can see comment made by the commmentor' do
+    visit user_post_path(@user1.id, @post1.id)
+    expect(page).to have_content('comment 1')
+    expect(page).to have_content('comment 2')
+    visit user_post_path(@user1.id, @post2.id)
+    expect(page).to have_content('comment 3')
   end
 end

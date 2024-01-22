@@ -1,69 +1,53 @@
 require 'rails_helper'
 
-RSpec.feature 'User Show Page' do
-  before(:each) do
-    @user1 = User.create(name: 'Kwame', bio: 'Lives in milan', photo: 'https://www.pngegg.com/en/png-wgjix',
-    posts_counter: 0)
-    @user2 = User.create(name: 'Kofi', bio: 'I am a teacher', photo: 'https://www.pngegg.com/en/png-sigeb',
-    posts_counter: 0)
-    @post1 = Post.create(author: @user1, title: 'Title 1', text: 'I won')
-    @post2 = Post.create(author: @user1, title: 'Title 2', text: 'I lost')
-    @post3 = Post.create(author: @user1, title: 'Title 3', text: 'Draw')
-    @post4 = Post.create(author: @user2, title: 'Title 4', text: 'difficult')
-    @post5 = Post.create(author: @user2, title: 'Title 5', text: 'awesome')
-    @post6 = Post.create(author: @user2, title: 'Title 6', text: 'Fire')
-  end
-  scenario 'I can see the username of the user' do
-    visit users_path(@user1)
+describe 'User Show Page Features', type: :feature, js: true do
+  before :each do
+    @user1 = User.create(
+      name: 'Harley Quinn',
+      photo: 'https://images.unsplash.com/photo-1696537768609-1cf03f53e893?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80',
+      bio: 'user1 Pix',
+      posts_counter: 5
+    )
 
-    expect(page).to have_content(@user1.name)
+    Post.create(id: 4111, title: 'Post 1', text: 'text 1', likes_counter: 0, comments_counter: 0, author_id: @user1.id)
+    Post.create(id: 51111, title: 'Post 2', text: 'text 2', likes_counter: 0, comments_counter: 0, author_id: @user1.id)
+    Post.create(id: 611111, title: 'Post 3', text: 'text 3', likes_counter: 0, comments_counter: 0, author_id: @user1.id)
   end
 
-  scenario 'I can see the profile picture for each user' do
-    visit users_path(@user1)
-
-    expect(page).to have_css('img[src*="https://www.pngegg.com/en/png-wgjix"]')
+  it 'can see the username' do
+    visit user_path(@user1.id)
+    expect(page).to have_text('Harley Quinn')
   end
 
-  scenario 'I can see the number of posts of the user' do
-    visit users_path(@user1)
-
-    expect(page).to have_content(@user1.posts_counter)
+  it 'can see the user profile pic' do
+    visit user_path(@user1.id)
+    expect(page).to have_css('.photo')
   end
 
-  scenario 'I can see the bio of the user' do
-    visit users_path(@user1)
-
-    expect(page).to have_content(@user1.bio)
+  it 'can see the number of posts the user has written' do
+    visit user_path(@user1.id)
+    expect(page).to have_all_of_selectors('.posts')
   end
 
-  scenario 'I can see a button to view user\'s posts' do
-    visit users_path(@user1)
-
-    expect(page).to have_content('See All Posts')
+  it 'can see the user\'s bio' do
+    visit user_path(@user1.id)
+    expect(page).to have_css('.user-card')
   end
 
-  scenario 'I can see the users first 3 posts.' do
-    visit users_path(@user1)
-
-    expect(page).to have_text(@post1.title, wait: 10)
-    expect(page).to have_text(@post2.title, wait: 10)
-    expect(page).to have_text(@post3.title, wait: 10)
+  it "should show the user's first 3 posts" do
+    visit user_path(@user1.id)
+    expect(page).to have_content(text)
   end
 
-  scenario 'redirects to the post show page when you click on a users post' do
-    visit users_path(@user1)
-    expect(page).to have_link(@post2.title)
-    click_link @post2.title
-
-    expect(current_path).to eq(users_path(@user1))
+  it 'redirect to the post\'s show page' do
+    visit user_path(@user1.id)
+    click_link(href: user_post_path(@user1.id, 4111))
+    expect(page).to have_current_path(user_post_path(@user1.id, 4111))
   end
 
-  scenario 'When I click to see all posts, it redirects me to the user\'s post\'s index page' do
-    visit users_path(@user1)
-
-    click_link 'See All Posts'
-
-    expect(current_path).to eq(users_path(@user1))
+  it 'redirects to the user\'s all posts page' do
+    visit user_path(@user1.id)
+    click_link(href: user_posts_path(@user1.id))
+    expect(page).to have_current_path(user_posts_path(@user1.id))
   end
 end

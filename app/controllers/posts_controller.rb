@@ -20,7 +20,7 @@ class PostsController < ApplicationController
     @post.likes_counter = 0
 
     if @post.save
-      redirect_to user_post_path(@user, @post)
+      redirect_to user_posts_path(@user, @post)
     else
       render 'new'
     end
