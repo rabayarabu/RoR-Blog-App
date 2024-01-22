@@ -51,7 +51,6 @@ gem 'bootsnap', require: false
 group :development, :test do
   # The RSpec testing framework
   gem 'rspec-rails'
-
   # Capybara, the library that allows us to interact with the browser using Ruby
 
 
