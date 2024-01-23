@@ -31,6 +31,13 @@ describe 'User Show Page Features', type: :feature, js: true do
     expect(page).to have_all_of_selectors('.posts')
   end
 
+  # I can see the button that let me view all of user's posts.
+  it 'display a button thay let me view all of user\'s posts' do
+    visit '/users/1'
+    click_on 'Show Posts'
+    expect(page).to have_content('Show Posts')
+  end
+
   it 'can see the user\'s bio' do
     visit user_path(@user1.id)
     expect(page).to have_css('.user-card')
