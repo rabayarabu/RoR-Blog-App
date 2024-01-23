@@ -24,7 +24,7 @@ describe 'User Index Page Features', type: :feature, js: true do
     visit users_path
     expect(page).to have_all_of_selectors('.posts')
   end
-  # When I click on a user, I am redirected to that user's show page. 
+  # When I click on a user, I am redirected to that user's show page.
   it 'redirect to the user\'s show page' do
     visit users_path
     click_link(href: user_path(@user1.id))

@@ -25,7 +25,7 @@ describe 'User Show Page Features', type: :feature, js: true do
     visit user_path(@user1.id)
     expect(page).to have_css('.photo')
   end
-  # I can see the number of posts the user has written. 
+  # I can see the number of posts the user has written.
   it 'can see the number of posts the user has written' do
     visit user_path(@user1.id)
     expect(page).to have_all_of_selectors('.posts')
@@ -42,7 +42,7 @@ describe 'User Show Page Features', type: :feature, js: true do
     visit user_path(@user1.id)
     expect(page).to have_css('.user-card')
   end
-  # I can see the user's first 3 posts. 
+  # I can see the user's first 3 posts.
   it "should show the user's first 3 posts" do
     visit user_path(@user1.id)
     expect(page).to have_content(text)

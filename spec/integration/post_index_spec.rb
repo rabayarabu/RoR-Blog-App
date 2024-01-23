@@ -64,7 +64,7 @@ describe 'Post Index Page Features', type: :feature, js: true do
     visit user_posts_path(@user1.id)
     expect(page).to have_content(@user1.posts_counter)
   end
-  
+
   # I can see how many likes a post has.
   it 'can see how many likes a post has' do
     visit user_posts_path(@user1.id)
