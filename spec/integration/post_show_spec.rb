@@ -24,39 +24,39 @@ RSpec.describe 'Post Show Page Features', type: :feature, js: true do
 
     @user1.likes.create(post: @post1)
   end
-
+  # I can see the post's title.
   it 'can see the post\'s title' do
     visit user_post_path(@user1.id, @post1.id)
     expect(page).to have_content('text 1')
   end
-
+  # I can see who wrote the post.
   it 'can see the who wrote the post' do
     visit user_post_path(@user1.id, @post1.id)
     expect(page).to have_content('Harley Quinn')
   end
-
+  # I can see how many comments it has.
   it 'can see how many comments a post has' do
     visit user_post_path(@user1.id, @post1.id)
     expect(page).to have_content('Comments: 2')
     visit user_post_path(@user1.id, @post2.id)
     expect(page).to have_content('Comments: 1')
   end
-
+  # I can see how many likes it has.
   it 'can see how many likes a post has' do
     visit user_post_path(@user1.id, @post1.id)
     expect(page).to have_content('Likes: 1')
   end
-
+  # I can see the post body.
   it 'can see the post\'s body' do
     visit user_post_path(@user1.id, @post1.id)
     expect(page).to have_content('text 1')
   end
-
+  # I can see the username of each commentor.
   it 'can see the user name of the commentor' do
     visit user_post_path(@user1.id, @post1.id)
     expect(page).to have_content('Harley Quinn')
   end
-
+  # I can see the comment each commentor left.
   it 'can see comment made by the commmentor' do
     visit user_post_path(@user1.id, @post1.id)
     expect(page).to have_content('comment 1')

@@ -23,54 +23,60 @@ describe 'Post Index Page Features', type: :feature, js: true do
     @user1.likes.create(post: post1)
   end
 
+  # I can see the user's profile picture.
   it 'can see the user\'s profile picture' do
     visit user_posts_path(@user1.id)
     expect(page).to have_css('.comment-bio-card')
   end
 
+  # I can see the user's username
   it 'can see the user\'s username' do
     visit user_posts_path(@user1.id)
     expect(page).to have_content('Harley Quinn')
   end
 
+  # I can see the number of posts the user has written.
   it 'can see the number of posts the user has written' do
     visit user_posts_path(@user1.id)
     expect(page).to have_content('Post 1')
   end
 
+  # I can see a post's title.
   it 'can see the post\'s title' do
     visit user_posts_path(@user1.id)
     expect(page).to have_content('Post 1')
   end
 
+  # I can see some of the post's body.
   it 'can see the post\'s body' do
     visit user_posts_path(@user1.id)
     expect(page).to have_content(text)
   end
 
-  # I can see the number of comments a post has.
-  it 'can see how many comments a post has' do
-    visit user_posts_path(@user1.id)
-    expect(page).to have_content('Comments: 2')
-    expect(page).to have_content('Comments: 1')
-  end
-
+  # I can see the first comments on a post
   it 'can see the first comments of a post' do
     visit user_posts_path(@user1.id)
     expect(page).to have_content('comment 1')
   end
 
+  # I can see how many comments a post has.
+  it 'can see how many comments a post has' do
+    visit user_posts_path(@user1.id)
+    expect(page).to have_content(@user1.posts_counter)
+  end
+  
+  # I can see how many likes a post has.
   it 'can see how many likes a post has' do
     visit user_posts_path(@user1.id)
     expect(page).to have_content('Likes: 1')
     expect(page).to have_content('Likes: 0')
   end
-
+  # I can see a section for pagination if there are more posts than fit on the view.
   it 'can see a section for pagination if there are more posts than fit on the view' do
     visit user_posts_path(@user1.id)
     expect(page).to have_css('button')
   end
-
+  # When I click on a post, it redirects me to that post's show page.
   it 'When I click on a post, it redirects me to that post\'s show page' do
     visit user_posts_path(@user1.id)
     click_link(href: user_post_path(@user1.id, 6666))

@@ -9,22 +9,22 @@ describe 'User Index Page Features', type: :feature, js: true do
       posts_counter: 5
     )
   end
-
+  # I can see the username of all other users.
   it 'can see the username of all other users' do
     visit users_path
     expect(page).to have_all_of_selectors('.user-info')
   end
-
+  # I can see the profile picture for each user.
   it 'can see the profile pic of each users' do
     visit users_path
     expect(page).to have_all_of_selectors('.photo')
   end
-
+  # I can see the number of posts each user has written.
   it 'can see the number of posts each user has written' do
     visit users_path
     expect(page).to have_all_of_selectors('.posts')
   end
-
+  # When I click on a user, I am redirected to that user's show page. 
   it 'redirect to the user\'s show page' do
     visit users_path
     click_link(href: user_path(@user1.id))
