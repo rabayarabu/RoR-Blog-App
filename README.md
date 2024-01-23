@@ -164,6 +164,11 @@ it will run the all the unit test of these project
 - Twitter: [@rabaya_rabu](https://twitter.com/rabaya_rabu)
 - LinkedIn: [LinkedIn](https://linkedin.com/in/rabaya-rabu-142721169/)
 
+👤 **Evans Kofi Nyamekye**
+- GitHub: [evansnyamekye](https://github.com/evansnyamekye)
+- Twitter: [@nyamekye2131](https://twitter.com/nyamekye2131)
+- LinkedIn: [Evans Kofi Nyamekye](https://www.linkedin.com/in/evans-kofi-nyamekye-1980a4117/)
+  
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FUTURE FEATURES -->
