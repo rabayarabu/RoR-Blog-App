@@ -16,6 +16,7 @@ class User < ApplicationRecord
   def set_defaults
     self.posts_counter ||= 0
   end
+
   # Method to return the 3 most recent posts for a given user
   def recent_posts(limit = 3)
     posts.order(created_at: :desc).limit(limit)
